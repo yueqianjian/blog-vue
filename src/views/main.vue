@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <my-header></my-header>
-    <router-view class="content" />
+    <content class="content">
+      <router-view class="content-cell" />
+    </content>
     <my-footer></my-footer>
     <mp3></mp3>
   </div>
@@ -37,12 +39,20 @@ export default {
 .main {
   width: 100%;
   min-height: 100vh;
-  padding-top: 80px;
-  background: #eeeeee;
+  padding-top: 76px;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   .content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    .content-cell {
+      flex: 1;
+      width: 980px;
+      height: 100%;
+      margin: 0 auto;
+    }
   }
 }
 </style>

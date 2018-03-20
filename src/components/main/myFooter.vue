@@ -15,10 +15,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$blue: #2d8cf0;
+* {
+  width: 100%;
+}
 .my-footer {
-  height: 48;
-  line-height: 48px;
+  max-width: 1012px;
+  margin: 40px auto 0;
+  padding: 0 12px;
+  height: 106;
+  line-height: 106px;
   background: #ffffff;
+  border-top: 1px #e1e4e8 solid;
 }
 </style>

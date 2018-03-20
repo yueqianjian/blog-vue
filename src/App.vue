@@ -12,7 +12,6 @@ export default {
 
 <style lang='scss'>
 * {
-  width: 100%;
   box-sizing: border-box;
   text-align: center;
 }
