@@ -3,7 +3,7 @@
     <Carousel autoplay v-model="carouselValue" loop trigger='hover'>
       <CarouselItem v-for="(item,index) in photoList" :key="index">
         <div class="demo-carousel">
-          <img :src="encodeURI(item)">
+          <img :src="encodeURI(item)" />
         </div>
       </CarouselItem>
     </Carousel>
@@ -27,7 +27,7 @@ export default {
         .post("mock/photoList")
         .then(res => {
           console.log(res.data);
-          this.photoList = res.data;
+          this.photoList = res.data.photoList;
         })
         .catch(err => {
           console.log(err);
