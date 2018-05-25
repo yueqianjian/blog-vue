@@ -38,9 +38,6 @@ export default {
   width: 100%;
 }
 .my-header {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 56px;
   line-height: 56px;
   background: #000000;

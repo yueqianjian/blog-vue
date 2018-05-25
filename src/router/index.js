@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router';
 
-import ListView from './list';
+import Main from '../views/main';
 
 Vue.use(VueRouter);
 
@@ -12,15 +12,15 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: ListView
+      component: Main
     },
     {
       path: '/list',
-      component: ListView
+      component: Main
     },
     {
       path: '/detail/:id',
-      component: () => import('./detail')
+      component: () => import('../views/main')
     }
   ]
 });
