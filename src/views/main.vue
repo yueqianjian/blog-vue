@@ -1,6 +1,9 @@
 <template>
   <div class="main">
     {{ articleList }}
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-wxbzhuye"></use>
+    </svg>
     <!--<mp3></mp3>-->
   </div>
 </template>
