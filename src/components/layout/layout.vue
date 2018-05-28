@@ -22,9 +22,10 @@
   }
 </script>
 
-<style scoped>
+<style>
   .icon {
-    width: 1em; height: 1em;
+    height: 32px;
+    width: 50px;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;

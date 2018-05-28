@@ -1,7 +1,7 @@
 <template>
   <header class="my-header">
     <div>
-      <div class="logo">LOGO</div>
+      <div class="logo">千简</div>
       <div class="menu">
         <div v-for="item in menu">
           <Icon :type="item.icon"></Icon>
@@ -42,6 +42,7 @@ export default {
   line-height: 56px;
   background: #000000;
   color: #ffffff;
+  margin-bottom: 20px;
   & > div {
     max-width: 1012px;
     padding: 0 12px;

@@ -1,39 +1,27 @@
 <template>
   <div class="main">
-    {{ articleList }}
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="#icon-wxbzhuye"></use>
-    </svg>
-    <!--<mp3></mp3>-->
+    <list></list>
   </div>
 </template>
 
 <script>
-import Mp3 from "../components/mp3";
-export default {
-  components: {
-    Mp3
-  },
-  data() {
-    return {
-      msg: "msg"
-    };
-  },
-  computed: {
-    articleList() {
-      return this.$store.state.articleList;
+  import List from "../components/article/edit";
+
+  export default {
+    components: {
+      List
+    },
+    data() {
+      return {
+        msg: "msg"
+      };
     }
-  },
-  beforeMount() {
-    return Promise.all([
-      this.$store.dispatch('FETCH_ARTICLE_LIST')
-    ]);
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-.main {
-}
+  .main {
+    width: 100%;
+  }
 </style>
 
