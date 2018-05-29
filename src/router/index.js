@@ -15,12 +15,27 @@ const router = new VueRouter({
       component: Main
     },
     {
-      path: '/list',
-      component: Main
+      path: '/login',
+      component: () => import('../views/login')
     },
     {
-      path: '/detail/:id',
-      component: () => import('../views/main')
+      path: '/article',
+      redirect: '/article/list',
+      component: () => import('../components/article/index'),
+      children: [
+        {
+          path: 'list',
+          component: () => import('../components/article/list')
+        },
+        {
+          path: 'edit',
+          component: () => import('../components/article/edit')
+        },
+        {
+          path: 'detail/:id',
+          component: () => import('../components/article/detail')
+        }
+      ]
     }
   ]
 });

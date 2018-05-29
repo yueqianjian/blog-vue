@@ -34,6 +34,7 @@
         this.$emit('input', value);
       },
       editBtn () {
+        this.$router.push('/article/edit')
         console.log('edit')
       },
       saveBtn () {

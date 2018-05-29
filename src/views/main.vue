@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import List from "../components/article/edit";
+  import List from "../components/article/list";
 
   export default {
     components: {

@@ -1,9 +1,9 @@
 <template>
   <header class="my-header">
     <div>
-      <div class="logo">千简</div>
+      <div class="logo"  @click="go('/')">千简</div>
       <div class="menu">
-        <div v-for="item in menu">
+        <div v-for="item in menu" @click="go(item.to)">
           <Icon :type="item.icon"></Icon>
           <span>{{ item.title }}</span>
         </div>
@@ -19,7 +19,7 @@ export default {
       menu: [
         {
           title: "文章",
-          to: "#",
+          to: "/article",
           icon: "clipboard"
         },
         {
@@ -29,6 +29,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    go (e) {
+      this.$router.push(e)
+    }
   }
 };
 </script>

@@ -24,21 +24,11 @@
     },
     data() {
       return {
-        content: '',
         title: 'title',
+        content: '',
         isEdit: true
       }
-    },
-    // computed: {
-    //   articleList() {
-    //     return this.$store.state.articleList;
-    //   }
-    // },
-    // beforeMount() {
-    //   return Promise.all([
-    //     this.$store.dispatch('getArticleList')
-    //   ]);
-    // }
+    }
   }
 </script>
 
