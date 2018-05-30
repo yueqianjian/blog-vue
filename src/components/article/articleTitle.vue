@@ -38,7 +38,7 @@
         console.log('edit')
       },
       saveBtn () {
-        console.log('save')
+        this.$emit('saveArticle')
       },
       delBtn () {
         console.log('delete')

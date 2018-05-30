@@ -24,7 +24,7 @@ export default {
         },
         {
           title: "游戏",
-          to: "#",
+          to: "/game",
           icon: "ios-nutrition"
         }
       ]

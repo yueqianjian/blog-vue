@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <article-title v-model="title" :is-edit="isEdit"></article-title>
+    <article-title v-model="title" :is-edit="isEdit" @saveArticle="createArticle"></article-title>
     <div class="edit-main">
       <div>
         <textarea v-model="content" placeholder="edit article..." autofocus></textarea>
@@ -27,6 +27,55 @@
         title: 'title',
         content: '',
         isEdit: true
+      }
+    },
+    computed: {
+      host() {
+        return this.$store.state.host
+      }
+    },
+    methods: {
+      createArticle () {
+        this.$http.post(`${this.host}/api/article/create`,{
+          title: this.title,
+          content: this.content
+        }).then((res) => {
+          console.log(res)
+          this.update(res.data._id, {
+            title: 111,
+            content: 'test'
+          })
+        }).catch((err) => {
+          console.log(err)
+        });
+      },
+      findById (id) {
+        this.$http.post(`${this.host}/api/article/findById`,{
+          id
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
+        });
+      },
+      remove (id) {
+        this.$http.post(`${this.host}/api/article/remove`, {
+          id
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
+        });
+      },
+      update (id, data) {
+        this.$http.post(`${this.host}/api/article/update`, {
+          id,
+          data
+        }).then((res) => {
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
+        });
       }
     }
   }

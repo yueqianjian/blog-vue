@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Axios from 'axios';
 import App from './App'
 import router from './router'
 import { sync } from 'vuex-router-sync'
@@ -10,6 +11,7 @@ import './mock'
 sync(store, router);
 Vue.use(iView);
 Vue.config.productionTip = false;
+Vue.prototype.$http = Axios
 
 new Vue({
   el: '#app',

@@ -19,18 +19,26 @@
 </template>
 
 <script>
+  import moment from 'moment'
+  moment.locale('zh-cn')
+
   export default {
     name: "list",
-    // computed: {
-    //   articleList() {
-    //     return this.$store.state.articleList;
-    //   }
-    // },
-    // beforeCreated() {
-    //   return Promise.all([
-    //     this.$store.dispatch('getArticleList')
-    //   ]);
-    // }
+    filters: {
+      format (v) {
+        return moment(v).format('llll')
+      }
+    },
+    computed: {
+      articleList() {
+        return this.$store.state.articleList;
+      }
+    },
+    beforeCreate() {
+      return Promise.all([
+        this.$store.dispatch('getArticleList')
+      ]);
+    }
   }
 </script>
 
