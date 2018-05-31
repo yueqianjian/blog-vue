@@ -1,8 +1,8 @@
 'use strict';
 
 const mutations = {
-  setArticleList (state, items){
-    state.articleList = items;
+  update (state, [name, data]) {
+    state[name] = data
   }
 };
 export default mutations

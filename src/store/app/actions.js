@@ -14,7 +14,7 @@ const actions = {
       return axios.get(`${host}/api/article/list`)
         .then(response => {
           let data = response.data;
-          commit('setArticleList', data);
+          commit('update', ['articleList',data]);
           return data;
         })
     }

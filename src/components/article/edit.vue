@@ -1,9 +1,9 @@
 <template>
   <div class="edit">
-    <article-title v-model="title" :is-edit="isEdit" @saveArticle="createArticle"></article-title>
+    <article-title v-model="articleData" :is-edit="isEdit" @saveArticle="createArticle"></article-title>
     <div class="edit-main">
       <div>
-        <textarea v-model="content" placeholder="edit article..." autofocus></textarea>
+        <textarea v-model="content" placeholder="edit article..."></textarea>
       </div>
       <div>
         <article-content :content="content"></article-content>
@@ -24,7 +24,10 @@
     },
     data() {
       return {
-        title: 'title',
+        articleData: {
+          title: '',
+          info: '',
+        },
         content: '',
         isEdit: true
       }
@@ -36,15 +39,16 @@
     },
     methods: {
       createArticle () {
+        let { articleData,content } = this
+        let { title,info } = articleData
         this.$http.post(`${this.host}/api/article/create`,{
-          title: this.title,
-          content: this.content
+          title,
+          info,
+          content
         }).then((res) => {
+          this.articleData = {}
+          this.content = ''
           console.log(res)
-          this.update(res.data._id, {
-            title: 111,
-            content: 'test'
-          })
         }).catch((err) => {
           console.log(err)
         });
@@ -89,7 +93,7 @@
       display: flex;
       > div {
         flex: 1;
-        height: calc(100vh - 56px - 20px - 106px - 40px - 44px);
+        height: calc(100vh - 56px - 20px - 106px - 40px - 44px - 32px - 12px);
         overflow: auto;
         &:first-child {
           margin-right: 4px;

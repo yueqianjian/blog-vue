@@ -3,10 +3,14 @@
     <div>
       <div class="logo"  @click="go('/')">千简</div>
       <div class="menu">
-        <div v-for="item in menu" @click="go(item.to)">
-          <Icon :type="item.icon"></Icon>
-          <span>{{ item.title }}</span>
-        </div>
+        <template v-for="item in menu">
+          <div v-if="item.title === '写作'?isAdmin:true" @click="go(item.to)">
+            <svg class="icon" aria-hidden="true">
+              <use :xlink:href="`#${item.icon}`"></use>
+            </svg>
+            <span>{{ item.title }}</span>
+          </div>
+        </template>
       </div>
     </div>
   </header>
@@ -18,17 +22,27 @@ export default {
     return {
       menu: [
         {
+          title: "写作",
+          to: "/article/edit",
+          icon: "icon-write"
+        },
+        {
           title: "文章",
           to: "/article",
-          icon: "clipboard"
+          icon: "icon-wenzhang"
         },
         {
           title: "游戏",
           to: "/game",
-          icon: "ios-nutrition"
+          icon: "icon-game"
         }
       ]
     };
+  },
+  computed: {
+    isAdmin() {
+      return this.$store.state.isAdmin
+    }
   },
   methods: {
     go (e) {

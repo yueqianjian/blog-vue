@@ -1,16 +1,11 @@
 <template>
   <div class="main">
-    <list></list>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import List from "../components/article/list";
-
   export default {
-    components: {
-      List
-    },
     data() {
       return {
         msg: "msg"

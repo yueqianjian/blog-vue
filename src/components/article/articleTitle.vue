@@ -1,18 +1,24 @@
 <template>
   <div class="article-title">
-    <input class="left" v-if="isEdit" :value="value" @input="handleInput" placeholder="title"/>
-    <p class="left" v-else>{{ value }}</p>
-    <p class="right">
-      <svg v-if="isEdit" class="icon" aria-hidden="true" @click="saveBtn">
-        <use xlink:href="#icon-save"></use>
-      </svg>
-      <svg v-else class="icon" aria-hidden="true" @click="editBtn">
-        <use xlink:href="#icon-edit"></use>
-      </svg>
-      <svg class="icon" aria-hidden="true" @click="delBtn">
-        <use xlink:href="#icon-delete"></use>
-      </svg>
-    </p>
+    <div class="title">
+      <input class="left" v-if="isEdit" :value="value.title" @input="titleInput" placeholder="title"/>
+      <p class="left" v-else>{{ value }}</p>
+      <p class="right" v-if="isAdmin">
+        <svg v-if="isEdit" class="icon" aria-hidden="true" @click="saveBtn">
+          <use xlink:href="#icon-save"></use>
+        </svg>
+        <svg v-else class="icon" aria-hidden="true" @click="editBtn">
+          <use xlink:href="#icon-edit"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" @click="delBtn">
+          <use xlink:href="#icon-delete"></use>
+        </svg>
+      </p>
+    </div>
+    <div class="info">
+      <textarea v-if="isEdit" :value="value.info" @input="infoInput" placeholder="edit info..."></textarea>
+      <p v-else>{{ value }}</p>
+    </div>
   </div>
 </template>
 
@@ -21,17 +27,41 @@
     name: "articleTitle",
     props: {
       value: {
-        type: String
+        type: Object,
+        default () {
+          return {
+            title: '',
+            info: ''
+          }
+        }
       },
       isEdit: {
         type: Boolean,
         default: false
       }
     },
+    data () {
+      return {
+        articleData: {}
+      }
+    },
+    computed: {
+      isAdmin() {
+        return this.$store.state.isAdmin
+      }
+    },
     methods: {
-      handleInput(event) {
+      titleInput(event) {
         let value = event.target.value;
-        this.$emit('input', value);
+        let { articleData } = this
+        articleData.title = value
+        this.$emit('input', articleData);
+      },
+      infoInput(event) {
+        let value = event.target.value;
+        let { articleData } = this
+        articleData.info = value
+        this.$emit('input', articleData);
       },
       editBtn () {
         this.$router.push('/article/edit')
@@ -49,18 +79,32 @@
 
 <style scoped lang="scss">
   .article-title {
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    .left {
-      padding: 0 5px;
-      width: 160px;
-      height: 32px;
-      line-height: 32px;
+    > div {
+      margin-bottom: 12px;
     }
-    .right {
+    .title {
+      display: flex;
+      justify-content: space-between;
+      .left {
+        padding: 0 5px;
+        width: 160px;
+        height: 32px;
+        line-height: 32px;
+      }
+      .right {
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+    .info {
       height: 32px;
-      line-height: 32px;
+      > * {
+        padding: 0 5px;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+      }
     }
   }
 </style>

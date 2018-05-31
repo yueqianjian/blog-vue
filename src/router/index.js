@@ -12,30 +12,33 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Main
+      component: Main,
+      redirect: 'article',
+      children: [
+        {
+          path: 'article',
+          redirect: 'article/list',
+          component: () => import('../components/article/index'),
+          children: [
+            {
+              path: 'list',
+              component: () => import('../components/article/list')
+            },
+            {
+              path: 'edit',
+              component: () => import('../components/article/edit')
+            },
+            {
+              path: 'detail/:id',
+              component: () => import('../components/article/detail')
+            }
+          ]
+        }
+      ]
     },
     {
       path: '/login',
       component: () => import('../views/login')
-    },
-    {
-      path: '/article',
-      redirect: '/article/list',
-      component: () => import('../components/article/index'),
-      children: [
-        {
-          path: 'list',
-          component: () => import('../components/article/list')
-        },
-        {
-          path: 'edit',
-          component: () => import('../components/article/edit')
-        },
-        {
-          path: 'detail/:id',
-          component: () => import('../components/article/detail')
-        }
-      ]
     }
   ]
 });

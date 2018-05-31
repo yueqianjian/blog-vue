@@ -1,12 +1,12 @@
 <template>
   <div class="list">
-    <div class="list-main" v-for="item in 8">
+    <div class="list-main" v-for="item in articleList" :key="item._id">
       <div>
         <p>
-          <router-link :to="`/article/detail/${item}`">title</router-link>
+          <router-link :to="`/article/detail/${item._id}`">{{ item.title }}</router-link>
         </p>
-        <p>contentcontentcontentcontentcontentcontentcontent</p>
-        <p>time</p>
+        <p>{{ item.info }}</p>
+        <p>{{ item.createTime | format }}</p>
       </div>
       <div>
 
