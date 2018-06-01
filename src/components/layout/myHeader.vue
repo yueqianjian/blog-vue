@@ -46,6 +46,10 @@ export default {
   },
   methods: {
     go (e) {
+      if(e === '/article/edit'){
+        this.$store.commit('update', ['article', {}])
+        this.$store.commit('update', ['articleContent', ''])
+      }
       this.$router.push(e)
     }
   }

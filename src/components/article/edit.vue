@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <article-title v-model="articleData" :is-edit="isEdit" @saveArticle="createArticle"></article-title>
+    <article-title v-model="articleData" :is-edit="isEdit" @saveArticle="saveArticle"></article-title>
     <div class="edit-main">
       <div>
         <textarea v-model="content" placeholder="edit article..."></textarea>
@@ -35,52 +35,32 @@
     computed: {
       host() {
         return this.$store.state.host
+      },
+      article () {
+        return this.$store.getters.article
       }
     },
     methods: {
-      createArticle () {
+      init () {
+        let { article } = this
+        this.articleData.title = article.title
+        this.articleData.info = article.info
+        this.content = article.content
+      },
+      async saveArticle () {
         let { articleData,content } = this
         let { title,info } = articleData
-        this.$http.post(`${this.host}/api/article/create`,{
-          title,
-          info,
-          content
-        }).then((res) => {
-          this.articleData = {}
-          this.content = ''
-          console.log(res)
-        }).catch((err) => {
-          console.log(err)
-        });
-      },
-      findById (id) {
-        this.$http.post(`${this.host}/api/article/findById`,{
-          id
-        }).then((res) => {
-          console.log(res)
-        }).catch((err) => {
-          console.log(err)
-        });
-      },
-      remove (id) {
-        this.$http.post(`${this.host}/api/article/remove`, {
-          id
-        }).then((res) => {
-          console.log(res)
-        }).catch((err) => {
-          console.log(err)
-        });
-      },
-      update (id, data) {
-        this.$http.post(`${this.host}/api/article/update`, {
-          id,
-          data
-        }).then((res) => {
-          console.log(res)
-        }).catch((err) => {
-          console.log(err)
-        });
+        if (!content | !title | !info) {
+          this.$Message.error('文章内容未编辑完成！！！');
+          return
+        }
+        await this.$store.dispatch('saveArticle', { title,info,content })
+        this.articleData = {}
+        this.content = ''
       }
+    },
+    created() {
+      this.init()
     }
   }
 </script>

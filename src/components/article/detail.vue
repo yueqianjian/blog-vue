@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
-    <article-title v-model="title"></article-title>
-    <article-content :content="content"></article-content>
+    <article-title v-model="article"></article-title>
+    <article-content :content="article.content"></article-content>
   </div>
 </template>
 
@@ -15,19 +15,15 @@
       ArticleTitle,
       ArticleContent
     },
-    data () {
-      return {
-        title: 'title',
-        content: ''
-      }
-    },
     computed: {
-      router() {
-        return this.$store.state.route
+      article () {
+        return this.$store.getters.article
       }
     },
     created () {
-      console.log(this.router)
+      return Promise.all([
+        this.$store.dispatch('getContent')
+      ]);
     }
   }
 </script>

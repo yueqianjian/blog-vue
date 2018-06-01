@@ -2,7 +2,7 @@
   <div class="article-title">
     <div class="title">
       <input class="left" v-if="isEdit" :value="value.title" @input="titleInput" placeholder="title"/>
-      <p class="left" v-else>{{ value }}</p>
+      <p class="left" v-else>{{ value.title }}</p>
       <p class="right" v-if="isAdmin">
         <svg v-if="isEdit" class="icon" aria-hidden="true" @click="saveBtn">
           <use xlink:href="#icon-save"></use>
@@ -17,7 +17,7 @@
     </div>
     <div class="info">
       <textarea v-if="isEdit" :value="value.info" @input="infoInput" placeholder="edit info..."></textarea>
-      <p v-else>{{ value }}</p>
+      <p v-else>{{ value.info }}</p>
     </div>
   </div>
 </template>
@@ -65,7 +65,6 @@
       },
       editBtn () {
         this.$router.push('/article/edit')
-        console.log('edit')
       },
       saveBtn () {
         this.$emit('saveArticle')

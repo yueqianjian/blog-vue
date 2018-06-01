@@ -24,6 +24,6 @@
 
 <style scoped lang="scss">
   .article-content {
-    width: 100%;
+    padding: 0 5px;
   }
 </style>

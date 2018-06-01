@@ -2,7 +2,7 @@
   <div class="list">
     <div class="list-main" v-for="item in articleList" :key="item._id">
       <div>
-        <p>
+        <p @click="saveArticle(item)">
           <router-link :to="`/article/detail/${item._id}`">{{ item.title }}</router-link>
         </p>
         <p>{{ item.info }}</p>
@@ -32,6 +32,11 @@
     computed: {
       articleList() {
         return this.$store.state.articleList;
+      }
+    },
+    methods: {
+      saveArticle (e) {
+        this.$store.commit('update', ['article', e])
       }
     },
     beforeCreate() {
