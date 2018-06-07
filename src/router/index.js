@@ -7,7 +7,6 @@ import Main from '../views/main';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
   base: '/',
   routes: [
     {

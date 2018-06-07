@@ -12,8 +12,7 @@ const state = {
   articleList: [],
   article: {},
   articleContent: '',
-  isAdmin: false,
-  host: 'http://127.0.0.1:7001'
+  isAdmin: false
 };
 
 export default new Vuex.Store({

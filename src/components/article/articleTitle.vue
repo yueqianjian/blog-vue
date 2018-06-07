@@ -89,6 +89,9 @@
         width: 160px;
         height: 32px;
         line-height: 32px;
+        color: #2d8cf0;
+        font-size: 20px;
+        font-weight: bold;
       }
       .right {
         height: 32px;
@@ -103,6 +106,7 @@
         height: 32px;
         line-height: 32px;
         overflow: hidden;
+        font-size: 18px;
       }
     }
   }
