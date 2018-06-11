@@ -3,11 +3,11 @@
 > 个人网站Vue前端
 
 ## 启动
-`
-npm i
-
-npm run dev
-`
+```bash
+$ npm i
+$ npm run dev
+$ open http://localhost:8080/
+```
 
 ## 个人网站效果展示地址 www.yueqianjian.com
 
