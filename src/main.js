@@ -5,16 +5,15 @@ import { sync } from 'vuex-router-sync'
 import store from './store/app'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-import './mock'
 
 sync(store, router);
 Vue.use(iView);
 Vue.config.productionTip = false;
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
 });
